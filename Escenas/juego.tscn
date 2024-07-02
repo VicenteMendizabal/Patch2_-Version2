@@ -1,0 +1,156 @@
+[gd_scene load_steps=9 format=3 uid="uid://dvx7wjnuaalya"]
+
+[ext_resource type="PackedScene" uid="uid://dhggb26i3ogqv" path="res://Escenas/player.tscn" id="1_4bbd4"]
+[ext_resource type="Texture2D" uid="uid://dannf3lotrhvl" path="res://AssetsJuego/bosque.png" id="1_fqs5w"]
+[ext_resource type="Script" path="res://Escenas/juego.gd" id="1_k0y3e"]
+[ext_resource type="PackedScene" uid="uid://ca6w4ubslblua" path="res://Escenas/spawner.tscn" id="3_0gijh"]
+[ext_resource type="Script" path="res://Escenas/DeadScreen.gd" id="5_bcv4b"]
+[ext_resource type="AudioStream" uid="uid://bkphtc7hxrc4m" path="res://AssetsJuego/Sonidos/Daydream Anatomy - 8-Bit Heroes - 03 Nin10day.mp3" id="6_5fwe2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gii4x"]
+size = Vector2(336, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akl0d"]
+size = Vector2(20, 192)
+
+[node name="Game" type="Node"]
+script = ExtResource("1_k0y3e")
+
+[node name="Bosque" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(162, 81)
+scale = Vector2(0.338281, 0.31388)
+texture = ExtResource("1_fqs5w")
+
+[node name="Player" parent="." instance=ExtResource("1_4bbd4")]
+position = Vector2(162, 145)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(162, 167.5)
+shape = SubResource("RectangleShape2D_gii4x")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(159, -1)
+shape = SubResource("RectangleShape2D_gii4x")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-11, 87)
+shape = SubResource("RectangleShape2D_akl0d")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(335, 83)
+shape = SubResource("RectangleShape2D_akl0d")
+
+[node name="Spawner" parent="." instance=ExtResource("3_0gijh")]
+position = Vector2(7, 37)
+
+[node name="Spawner2" parent="." instance=ExtResource("3_0gijh")]
+position = Vector2(44, 37)
+
+[node name="Spawner3" parent="." instance=ExtResource("3_0gijh")]
+position = Vector2(85, 37)
+
+[node name="Spawner4" parent="." instance=ExtResource("3_0gijh")]
+position = Vector2(122, 37)
+
+[node name="Spawner5" parent="." instance=ExtResource("3_0gijh")]
+position = Vector2(164, 37)
+
+[node name="Spawner6" parent="." instance=ExtResource("3_0gijh")]
+position = Vector2(201, 37)
+
+[node name="Spawner7" parent="." instance=ExtResource("3_0gijh")]
+position = Vector2(237, 37)
+
+[node name="Spawner8" parent="." instance=ExtResource("3_0gijh")]
+position = Vector2(274, 37)
+
+[node name="Spawner9" parent="." instance=ExtResource("3_0gijh")]
+position = Vector2(313, 37)
+
+[node name="ScoreLabel" type="Label" parent="."]
+texture_filter = 1
+offset_left = 157.0
+offset_top = 4.0
+offset_right = 197.0
+offset_bottom = 27.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "0
+"
+
+[node name="DeadScreen" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+script = ExtResource("5_bcv4b")
+
+[node name="Label" type="Label" parent="DeadScreen"]
+texture_filter = 1
+offset_left = 125.0
+offset_top = 24.0
+offset_right = 202.0
+offset_bottom = 50.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "You LOSE!"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DeadScreen"]
+offset_left = 133.0
+offset_top = 36.0
+offset_right = 195.0
+offset_bottom = 76.0
+
+[node name="Label" type="Label" parent="DeadScreen/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Score:"
+
+[node name="FinalScore" type="Label" parent="DeadScreen/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "0"
+
+[node name="Restart" type="Button" parent="DeadScreen"]
+texture_filter = 1
+offset_left = 60.0
+offset_top = 79.0
+offset_right = 135.0
+offset_bottom = 110.0
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+text = "RESTART"
+
+[node name="Exit" type="Button" parent="DeadScreen"]
+offset_left = 195.0
+offset_top = 79.0
+offset_right = 236.0
+offset_bottom = 110.0
+text = "EXIT"
+
+[node name="Label" type="Label" parent="."]
+visibility_layer = 513
+texture_filter = 1
+offset_left = 159.0
+offset_top = -10.0
+offset_right = 428.0
+offset_bottom = 16.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 3
+text = "game made by Vicente Mendizabal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JuegoSonido" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_5fwe2")
+volume_db = -14.991
+autoplay = true
+
+[connection signal="pressed" from="DeadScreen/Restart" to="DeadScreen" method="_on_restart_pressed"]
+[connection signal="pressed" from="DeadScreen/Exit" to="DeadScreen" method="_on_exit_pressed"]
